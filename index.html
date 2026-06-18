@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0089)file:///C:/Users/user/Downloads/FCM_Web%E5%AD%A6%E7%BF%92%E3%83%8A%E3%83%93_py_v1_16.html -->
+<!-- saved from url=(0089)file:///C:/Users/user/Downloads/FCM_Web%E5%AD%A6%E7%BF%92%E3%83%8A%E3%83%93_py_v2_13.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -482,7 +482,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   .qc-btn{padding:16px 14px;font-size:15px;min-height:52px;line-height:1.6;}
   .qc-nav{margin-top:16px;}
   .qc-nav-btn{padding:10px 16px;min-height:48px;font-size:14px;}
-  .qr-grid{grid-template-columns:1fr;gap:10px;}
+  .qr-grid{grid-template-columns:1fr 1fr;gap:8px;}
   .qr-cell{padding:14px 16px;font-size:14px;}
   .qr-action{flex-direction:column;gap:10px;}
   .qr-btn-sub,.qr-btn-main{width:100%;text-align:center;min-height:48px;font-size:14px;}
@@ -529,6 +529,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   .pe-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .pe-table th,.pe-table td{font-size:13px;padding:10px 12px;}
   .pe-table th:first-child,.pe-table td:first-child{min-width:120px;}
+  .flow-guide-note{font-size:14px;line-height:1.8;}
+  .flow-btn-primary{font-size:16px;padding:16px;}
+  .gm2-group-hdr{padding:14px 16px;font-size:15px;}
+  .gm2-ch{padding:12px 16px 12px 20px;font-size:14px;}
   .pc-grade-btns{grid-template-columns:1fr;gap:12px;}
   .pc-grade-btn{padding:20px 16px;}
   .fcm-lp-a{font-size:14px !important;}
@@ -538,6 +542,21 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   .ps-title{font-size:18px;}
   .ps-sub{font-size:14px;line-height:1.8;}
 }
+
+.flow-guide-note{font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;}
+.flow-btn-primary{font-size:15px;font-weight:700;color:#fff;background:#059669;border:none;border-radius:10px;cursor:pointer;padding:14px 28px;width:100%;font-family:'Noto Sans JP',sans-serif;box-shadow:0 2px 8px rgba(5,150,105,.3);}
+.flow-btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(5,150,105,.4);}
+.flow-btn-secondary{font-size:13px;color:var(--accent);background:none;border:1px solid var(--accent);border-radius:8px;cursor:pointer;padding:10px 20px;font-family:'Noto Sans JP',sans-serif;}
+.gm2-group{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;}
+.gm2-group-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;background:var(--surface);font-size:14px;font-weight:700;}
+.gm2-group-hdr:hover{background:var(--card);}
+.gm2-group-hdr .gm2-arrow{font-size:12px;color:var(--text-dim);transition:transform .2s;}
+.gm2-group.open .gm2-arrow{transform:rotate(90deg);}
+.gm2-group-body{display:none;border-top:1px solid var(--border);}
+.gm2-group.open .gm2-group-body{display:block;}
+.gm2-ch{padding:10px 16px 10px 24px;border-bottom:1px solid var(--border);font-size:13px;}
+.gm2-ch:last-child{border-bottom:none;}
+
 </style>
 </head>
 <body>
@@ -545,8 +564,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <span class="hbadge" id="grade-badge" style="background: var(--purple);">FCM 2級</span>
   <span class="htitle">🧘 ピラティス・ヨガ指導者のための FCM Web学習ナビ</span>
   <div class="views" id="header-tabs" style="display:none">
-    <button class="vbtn active" onclick="switchView(&#39;check&#39;)" id="vbtn-check">現状把握</button>
-    <button class="vbtn" onclick="switchView(&#39;study&#39;)" id="vbtn-study">学習</button>
+    <!-- v2 -->
+    
   </div>
   <span class="hsub" id="last-updated"></span>
 </header>
@@ -573,6 +592,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
             </button>
           </div>
         </div>
+        <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);line-height:1.6;text-align:center;">
+          本コンテンツの著作権は一般社団法人日本フィットネス産業協会（FIA）に帰属します。<br>複写・転載・再配布を禁止します。
+        </div>
       </div>
     </div>
 
@@ -582,15 +604,15 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <div class="sb-lbl">全体進捗</div>
     <div class="tp">
       <div class="tp-row"><span style="font-size:11px;color:var(--text-sub)" id="progress-label">確認済み科目</span>
-        <span><span class="tp-val" id="good-count">0</span><span class="tp-unit" id="subject-total"> / 12</span></span></div>
-      <div class="ptrack"><div class="pfill" id="pfill" style="width:0%"></div></div>
+        <span><span class="tp-val" id="good-count">1</span><span class="tp-unit" id="subject-total"> / 12</span></span></div>
+      <div class="ptrack"><div class="pfill" id="pfill" style="width: 10%;"></div></div>
     </div>
   </div>
   <div class="sb-sec">
     <div class="sb-lbl">ステータス</div>
     <div class="legend">
       <div class="li"><div class="ldot" style="background:var(--c-none)"></div><span style="color:var(--text-sub)">✗　未着手</span></div>
-      <div class="li"><div class="ldot" style="background:var(--c-weak)"></div><span style="color:var(--text-sub)">△　理解不足</span></div>
+      <div class="li"><div class="ldot" style="background:var(--c-weak)"></div><span style="color:var(--text-sub)">△　学習中</span></div>
       <div class="li"><div class="ldot" style="background:var(--c-ok)"></div><span style="color:var(--text-sub)">○　理解できた</span></div>
       <div class="li"><div class="ldot" style="background:var(--c-good)"></div><span style="color:var(--text-sub)">◎　問題で確認済み</span></div>
     </div>
@@ -617,23 +639,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     </div>
     <div id="view-tabs-area" style="">
       <div class="view-tabs-wrap">
-        <div class="view-tabs">
-          <button class="vtab active" id="vtab-check" onclick="switchView(&#39;check&#39;)">現状把握</button>
-          <button class="vtab" id="vtab-study" onclick="switchView(&#39;study&#39;)">学習</button>
-        </div>
-        <div class="view-tabs-desc" id="view-tabs-desc">
-          <div>
-            <span class="vd-label">現状把握</span>：各科目の代表問に答えて苦手科目を発見できます
-          </div>
-          <div style="margin-top:6px;">
-            <span class="vd-label">学　　習</span>：科目ごとに「技能」「キーワード」「過去問」を詳しく確認できます。
-            <div class="vd-note">
-              （「技能」「キーワード」で公式テキストのpage番号が表示されますが、詳細確認は公式テキストの購入が必要となります。<br>
-              <a href="https://fia.or.jp/fcm_textbook/textset/" target="_blank" class="vd-link">→ 公式テキストを購入する</a><br>
-              「過去問」でも科目ごとの過去問番号は確認できますが、詳細は過去問解説集の購入が必要となります。）
-            </div>
-          </div>
-        </div>
+        <!-- v2: tabs removed -->
+        <div id="flow-guide"><div class="flow-guide-note"><strong>📝 使い方（2ステップ）</strong><br>STEP 1：まず簡易チェックで苦手な章を見つける（約2分）<br>STEP 2：苦手な章からテキストを開いて学ぶ</div></div></div>
         <div style="margin-top:10px;" id="guide-toggle-wrap">
           <div class="guide-toggle-box">
             <div class="guide-toggle-desc">📍 あなたの仕事に直結する科目が一目でわかります。まずはこちらで全体像を確認しましょう。</div>
@@ -652,7 +659,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
             <button class="gm-tab" id="gm-tab2" onclick="startWithGrade(2)">Intermediate　2級で学ぶ</button>
           </div>
         </div>
-        <div class="gm-legend">
+        <div class="gm-legend" style="display:none;">
           <div class="gm-lg"><div class="gm-dot" style="background:#1D9E75"></div>◎ 店舗マネジメントに直結</div>
           <div class="gm-lg"><div class="gm-dot" style="background:#185FA5"></div>○ 戦略マネジメント</div>
           <div class="gm-lg"><div class="gm-dot" style="background:#888780"></div>△ 指導系（標準装備）</div>
@@ -667,24 +674,14 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 
       </div>
     <div id="quick-check-area" style="">
-      <div class="qc-card" id="qc-intro-card">
-        <div class="qc-header">
-          <span class="qc-title">まず簡易チェック（10問）で現状を把握しましょう</span>
-        </div>
-        <p style="font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:14px;">
-          各科目を代表する1問に「できる・あやふや・できない」で答えるだけ。<br>
-          約1〜2分で完了します。苦手な科目がわかったら、詳細チェックまたは学習モードに進めます。
-        </p>
-        <button class="qc-start-btn" onclick="startQuickCheck()">簡易チェック（10問）を開始する</button>
-        <button class="gm-back" style="margin-top:10px;display:block;text-align:center" onclick="backToQuickCheck()">← 簡易チェックに戻る</button>
-      </div>
+      <div id="qc-intro-card" style="text-align:center;padding:16px;"><button class="flow-btn-primary" onclick="startQuickCheck()">📝 簡易チェックを始める（10問・約2分）</button></div></div>
       <div id="qc-quiz-area" style="display:none">
         <div class="qc-card">
           <div class="qc-header">
             <span class="qc-title">簡易チェック</span>
             <span class="qc-prog" id="qc-prog">1 / 10</span>
           </div>
-          <div class="qc-num" id="qc-num"></div>
+          
           <div class="qc-q" id="qc-q"></div>
           <div class="qc-btns">
             <button class="qc-btn" id="qcb-yes" onclick="answerQuick(&#39;yes&#39;)">◎ できる</button>
@@ -703,14 +700,15 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
           <div class="qr-grid" id="qr-grid"></div>
           <div id="qr-message"></div>
           <div class="qr-action">
-            <button class="qr-btn-sub" onclick="backToGuide()">← 最初に戻る</button>
-            <button class="qr-btn-sub" onclick="startQuickCheck()">もう一度</button>
-            <button class="qr-btn-sub" onclick="switchView(&#39;study&#39;)">学習モードへ</button>
-            <button class="qr-btn-main" onclick="goToFullCheck()">詳細チェック（全問）へ →</button>
+            <button class="flow-btn-primary" onclick="showStudyFromResult()">苦手な章から学習を始める →</button>
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+              <button class="flow-btn-secondary" onclick="startQuickCheck()">もう一度チェック</button>
+              <button class="flow-btn-secondary" onclick="goToFullCheck()">詳細チェック</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main></div>
 
     <div id="check-start-view" style="display:none">
       <div class="check-start-card">
@@ -740,7 +738,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
       <div id="quiz-card-area"></div>
     </div>
-  </div>
+  
 
   <div id="view-study" style="display:none">
     <div style="margin-bottom:10px;">
@@ -748,9 +746,12 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         background:none;border:1px solid var(--border);border-radius:7px;padding:6px 14px;
         cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;">← 現状把握に戻る</button>
     </div>
-    <div class="study-guide-box">
-      <div class="sgb-title">学習モードの使い方</div>
-      <div class="sgb-body">
+    <div class="study-guide-box" style="padding:10px 16px;cursor:pointer;" onclick="var b=this.querySelector(&#39;.sgb-body&#39;);var a=this.querySelector(&#39;.sgb-arrow&#39;);if(b.style.display===&#39;none&#39;){b.style.display=&#39;&#39;;a.textContent=&#39;▲&#39;;}else{b.style.display=&#39;none&#39;;a.textContent=&#39;▶&#39;;}">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="sgb-title" style="margin-bottom:0;">使い方を見る</div>
+        <span class="sgb-arrow" style="font-size:12px;color:var(--text-dim);">▶</span>
+      </div>
+      <div class="sgb-body" style="display:none;margin-top:10px;">
         各科目カードをクリックすると、以下の5つのタブで詳しく学習できます。<br>
         <span class="sgb-tab">必要な技能</span>：この科目で身につける技能の一覧<br>
         <span class="sgb-tab">チェックリスト</span>：自己確認用のチェック項目（クリックでチェック）<br>
@@ -760,14 +761,15 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
     </div>
     <div class="grid-hdr">
+      <button id="back-to-result-btn" onclick="updateFlowState()" style="display:none;font-size:13px;color:var(--accent);background:none;border:none;cursor:pointer;font-family:&#39;Noto Sans JP&#39;,sans-serif;text-decoration:underline;margin-bottom:8px;">← 結果に戻る</button>
       <span class="grid-title" id="study-title">🔑 <span style="color:#185FA5">24時間ジム運営者</span>　2級（Intermediate）　科目一覧</span>
       <button class="reset-btn" onclick="resetAll()">進捗をリセット</button>
     </div>
     <div class="dpanel" id="dpanel"></div>
     <div class="sgrid" id="sgrid"></div>
   </div>
-</main>
-</div>
+
+
 
 <div class="kw-popup" id="kw-popup">
   <div class="kp-term"></div>
@@ -1420,6 +1422,7 @@ function startWithGrade(grade){
   }
   renderSidebar();
   // fixed barがあるのでscrollToでトップに移動
+  updateFlowState();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1449,34 +1452,158 @@ let sessionAnswers={}; // {sid: {qidx: 'yes'|'mostly'|'vague'|'no'}}
 // ════════════════════════════════════════════════════════
 // VIEW SWITCHER
 // ════════════════════════════════════════════════════════
+// v2: 3状態フロー
+function setFlowState(state){
+  var fg=document.getElementById('flow-guide');
+  var gt=document.getElementById('guide-toggle-wrap');
+  var lp=document.getElementById('fcm-lp-link-wrap');
+  var gm=document.getElementById('guide-map-wrap');
+  var qi=document.getElementById('qc-intro-card');
+  var qq=document.getElementById('qc-quiz-area');
+  var qr=document.getElementById('qc-result-area');
+  var qa=document.getElementById('quick-check-area');
+  var vta=document.getElementById('view-tabs-area');
+  var vc=document.getElementById('view-check');
+  var vs=document.getElementById('view-study');
+  var cs=document.getElementById('check-start-view');
+  var cq=document.getElementById('check-quiz-view');
+  var br=document.getElementById('back-to-result-btn');
+  // 全部隠す
+  [fg,gt,lp,qi,qq,qr,qa,vs,cs,cq].forEach(function(el){if(el)el.style.display='none';});
+  if(gm)gm.classList.remove('open');
+  if(br)br.style.display='none';
+  if(vta)vta.style.display='none';
+  var pgb=document.getElementById('persona-grade-bar');
+  vc.style.display='';
+  
+  if(state==='A'){
+    // 初回：導線＋ガイドマップ＋チェック開始ボタン
+    if(vta)vta.style.display='';
+    if(fg)fg.style.display='';if(gt)gt.style.display='';if(lp)lp.style.display='';
+    if(qa)qa.style.display='';if(qi)qi.style.display='';
+  }else if(state==='B'){
+    // チェック中
+    if(qa)qa.style.display='';if(qq)qq.style.display='';
+  }else if(state==='C'){
+    // チェック完了：結果＋学習カード
+    if(qa)qa.style.display='';if(qr)qr.style.display='';
+    if(vs){vs.style.display='';renderStudy();}
+  }else if(state==='D'){
+    // 詳細チェック導入：他の要素は全部隠す
+    if(cs)cs.style.display='';
+  }else if(state==='E'){
+    // 詳細チェック実施中
+    if(cq)cq.style.display='';
+  }
+  // persona-grade-barは常に表示するが、状態D/Eではヘッダーバーのみで十分
+  var pgb=document.getElementById('persona-grade-bar');
+  if(pgb) pgb.style.display=(state==='D'||state==='E')?'none':'';
+}
 function switchView(v){
   currentView=v;
-  document.getElementById('view-check').style.display = v==='check'?'':'none';
-  document.getElementById('view-study').style.display = v==='study'?'':'none';
-  document.getElementById('vbtn-check').classList.toggle('active',v==='check');
-  document.getElementById('vbtn-study').classList.toggle('active',v==='study');
-  // タブ説明・ガイドマップトグルを隠す（チェック/学習に進んだら問題・内容を上部に）
-  const desc=document.getElementById('view-tabs-desc');
-  const gtWrap=document.getElementById('guide-toggle-wrap');
-  const lpWrap=document.getElementById('fcm-lp-link-wrap');
-  if(desc) desc.style.display='none';
-  if(gtWrap) gtWrap.style.display='none';
-  if(lpWrap) lpWrap.style.display='none';
-  // ガイドマップも閉じる
-  const gm=document.getElementById('guide-map-wrap');
-  if(gm) gm.classList.remove('open');
-  if(v==='study') renderStudy();
+  var qcDone=Object.keys(quickAnswers).length>0;
+  setFlowState(qcDone?'C':'A');
+}
+function showStudyFromResult(){
+  // v2: 全部隠して苦手な章の詳細パネルだけ表示
+  document.getElementById('view-check').style.display='none';
+  document.getElementById('view-study').style.display='';
+  renderStudy();
+  // 苦手な章IDリスト作成
+  var weakIds=[];
+  document.querySelectorAll('#sgrid .scard').forEach(function(el){
+    if(el.style.display!=='none') weakIds.push(el.getAttribute('data-id'));
+  });
+  window._weakIds=weakIds;
+  window._weakIdx=0;
+  if(weakIds.length>0) openWeakStep(0);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openWeakStep(idx){
+  var ids=window._weakIds||[];
+  if(idx<0) idx=0;
+  if(idx>=ids.length){
+    // v2: 全章完了メッセージ
+    document.querySelector('.study-guide-box').style.display='none';
+    document.querySelector('.grid-hdr').style.display='none';
+    document.getElementById('sgrid').style.display='none';
+    var dp=document.getElementById('dpanel');
+    dp.innerHTML='<div style="text-align:center;padding:40px 20px;"><div style="font-size:32px;margin-bottom:16px;">🎉</div><div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:12px;">おつかれさまでした！</div><div style="font-size:14px;color:var(--text-sub);line-height:1.8;margin-bottom:24px;">苦手な章の確認が完了しました。<br>理解が深まったと感じたら、もう一度簡易チェックを受けてみましょう。<br>前回よりスコアが上がっているはずです。</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;"><button onclick="updateFlowState();startQuickCheck();" class="flow-btn-primary" style="width:auto;padding:12px 24px;">もう一度簡易チェック</button><button onclick="finishWeakStudy()" class="flow-btn-secondary">すべての章を見る</button></div></div>';
+    var nav=document.getElementById('weak-step-nav');if(nav)nav.remove();
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
+  window._weakIdx=idx;
+  // sgrid・使い方・タイトル行を全部隠す
+  document.querySelector('.study-guide-box').style.display='none';
+  document.querySelector('.grid-hdr').style.display='none';
+  document.getElementById('sgrid').style.display='none';
+  // 詳細パネルを表示
+  toggleDetail(ids[idx]);
+  // ナビゲーション追加
+  var nav=document.getElementById('weak-step-nav');
+  if(!nav){
+    nav=document.createElement('div');
+    nav.id='weak-step-nav';
+    document.getElementById('dpanel').after(nav);
+  }
+  nav.style.cssText='text-align:center;padding:16px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center;';
+  // 進捗バー
+  var doneCount=0;
+  ids.forEach(function(sid){if(status[sid]==='good'||status[sid]==='ok')doneCount++;});
+  var pct=Math.round(doneCount/ids.length*100);
+  var h='<div style="width:100%;margin-bottom:10px;"><div style="font-size:12px;color:var(--text-sub);margin-bottom:4px;">'+(idx+1)+'/'+ids.length+'章　（確認済み '+doneCount+'/'+ids.length+'）</div><div style="height:4px;background:var(--border);border-radius:2px;"><div style="height:4px;background:#059669;border-radius:2px;width:'+pct+'%;transition:width .3s;"></div></div></div>';
+  if(idx>0) h+='<button onclick="openWeakStep('+(idx-1)+')" class="flow-btn-secondary" style="padding:8px 16px;">← 前</button>';
+  if(idx<ids.length-1) h+='<button onclick="skipToNext()" class="flow-btn-primary" style="width:auto;padding:10px 24px;">次の章へ →</button>';
+  else h+='<button onclick="finishWeakStudy()" class="flow-btn-primary" style="width:auto;padding:10px 24px;">完了 →</button>';
+  h+='<br><button onclick="finishWeakStudy()" style="font-size:12px;color:var(--text-dim);background:none;border:none;cursor:pointer;margin-top:8px;text-decoration:underline;">すべての章を見る</button>';
+  nav.innerHTML=h;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function skipToNext(){
+  // 現在のパネルを閉じて次へ
+  var dp=document.getElementById('dpanel');
+  if(dp) dp.innerHTML='';
+  openWeakStep((window._weakIdx||0)+1);
+}
+
+function finishWeakStudy(){
+  // v2: 学習状況一覧を表示（結果画面には戻らない）
+  document.getElementById('view-check').style.display='none';
+  document.getElementById('view-study').style.display='';
+  document.querySelector('.study-guide-box').style.display='';
+  document.querySelector('.grid-hdr').style.display='';
+  document.getElementById('sgrid').style.display='';
+  var dp=document.getElementById('dpanel');if(dp)dp.innerHTML='';
+  var nav=document.getElementById('weak-step-nav');if(nav)nav.remove();
+  renderStudy();
+  // 全章表示（確認済みも含む）
+  document.querySelectorAll('#sgrid .scard').forEach(function(el){el.style.display='';});
+  document.querySelectorAll('[data-extra]').forEach(function(e){e.style.display='';});
+  var moreBtn=document.getElementById('show-more-btn');if(moreBtn)moreBtn.style.display='none';
+  // 「結果に戻る」ボタン表示
+  var br=document.getElementById('back-to-result-btn');if(br)br.style.display='';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function updateFlowState(){
+  var qcDone=Object.keys(quickAnswers).length>0;
+  document.getElementById('view-check').style.display='';
+  setFlowState(qcDone?'C':'A');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ════════════════════════════════════════════════════════
 // 現状把握チェック
 // ════════════════════════════════════════════════════════
 function startCheck(){
+  setFlowState('E');
   // 全質問を生成（HP質問をそのまま使用）
   allQuestions=[];
   getCurrentSubjects().forEach(s=>{
     s.hp_questions.forEach((q,i)=>{
-      allQuestions.push({sid:s.id, subject:`${s.num} ${s.name}`, q, qidx:i});
+      allQuestions.push({sid:s.id, subject:`${s.name}`, q, qidx:i});
     });
   });
   currentQIndex=0;
@@ -1593,7 +1720,7 @@ function renderResults(){
     });
     const pct=total>0?Math.round(score/(total*2)*100):0;
     const fillColor=st==='good'?'var(--c-good)':st==='ok'?'var(--c-ok)':st==='weak'?'var(--c-weak)':'var(--c-none)';
-    const statusLabel={none:'✗ 未着手',weak:'△ 理解不足',ok:'○ おおむねOK',good:'◎ 理解できた'};
+    const statusLabel={none:'✗ 未着手',weak:'△ 学習中',ok:'○ おおむねOK',good:'◎ 理解できた'};
     
     // 各質問の回答バッジ
     const qBadges=s.hp_questions.map((q,i)=>{
@@ -1605,7 +1732,7 @@ function renderResults(){
     
     return `<div class="result-card">
       <div class="result-hdr">
-        <div class="result-subj">${s.num} ${s.name}</div>
+        <div class="result-subj">${s.name}</div>
         <div class="result-score" style="color:${fillColor}">${statusLabel[st]}　${pct}%</div>
       </div>
       <div class="result-bar"><div class="result-fill" style="width:${pct}%;background:${fillColor}"></div></div>
@@ -1620,7 +1747,7 @@ function renderResults(){
 // ════════════════════════════════════════════════════════
 // STUDY MODE
 // ════════════════════════════════════════════════════════
-const SL={none:'✗ 未着手',weak:'△ 理解不足',ok:'○ 理解できた',good:'◎ 確認済み'};
+const SL={none:'✗ 未着手',weak:'△ 学習中',ok:'○ 理解できた',good:'◎ 確認済み'};
 const SC={none:'st-none',weak:'st-weak',ok:'st-ok',good:'st-good'};
 
 function renderStudy(){renderGrid();renderDetail();renderSidebar();}
@@ -1660,22 +1787,30 @@ function renderGrid(){
     });
     subs.forEach(s=>{ if(!sortOrder.includes(s.id)){ sortOrder.push(s.id); chPri[s.id]='exam'; }});
   }
-  const sorted = sortOrder.length>0
-    ? sortOrder.map(id=>subs.find(s=>s.id===id)).filter(Boolean)
-    : subs;
-  const descHtml = `<div style="font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:16px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
-    あなたの業務に直結する章から並べています。<br>
-    <span style="color:#065F46">◎業務直結</span> → <span style="color:#1E40AF">○戦略</span> → <span style="color:#4B5563">△指導系</span> → <span style="color:#991B1B">▽受検用</span> の順です。テキストの目次順とは異なります。</div>`;
-  document.getElementById('sgrid').innerHTML=descHtml+sorted.map(s=>{
+  const qcRank={'no':0,'vague':1,'yes':2};
+  const getQcId=(sid)=>(selectedGrade!==2&&subjToQc3[sid])?subjToQc3[sid]:sid;
+  const gmSorted=sortOrder.length>0?sortOrder.map(id=>subs.find(s=>s.id===id)).filter(Boolean):subs;
+  const sorted=Object.keys(quickAnswers).length>0
+    ?[...gmSorted].sort((a,b)=>{const ra=qcRank[quickAnswers[getQcId(a.id)]]??1.5;const rb=qcRank[quickAnswers[getQcId(b.id)]]??1.5;return ra-rb;})
+    :gmSorted;
+  const hasQR=Object.keys(quickAnswers).length>0;
+  const descHtml=hasQR
+    ?`<div style="font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:16px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">簡易チェックの結果をもとに、苦手な章から並べています。<br><span style="color:#991B1B">⚠️ 苦手</span> → <span style="color:#92400E">△ あやふや</span> → <span style="color:#065F46">◎ できる</span> の順です。</div>`
+    :`<div style="font-size:13px;color:var(--text-sub);line-height:1.7;margin-bottom:16px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">あなたの業務に直結する章から並べています。<br><span style="color:#065F46">◎業務直結</span> → <span style="color:#1E40AF">○戦略</span> → <span style="color:#4B5563">△指導系</span> → <span style="color:#991B1B">▽受検用</span> の順です。</div>`;
+  document.getElementById('sgrid').innerHTML=descHtml+sorted.map((s,idx)=>{
     const st=status[s.id]||'none';
     const cl=checks[s.id]||[];
     const done=cl.filter(Boolean).length;
     const badge = chPri[s.id] ? priBadge[chPri[s.id]] : null;
     const badgeHtml = badge ? `<span style="font-size:10px;padding:2px 8px;border-radius:4px;background:${badge.bg};color:${badge.color};font-weight:600;">${badge.label}</span>` : '';
     const chap = chapRef[s.id]||'';
-    return`<div class="scard" data-id="${s.id}" data-status="${st}" onclick="toggleDetail('${s.id}')">
+    const qcA=quickAnswers[getQcId(s.id)];
+    const wm=qcA==='no'?'⚠️ ':qcA==='vague'?'△ ':'';
+    const isWeak = qcA==='no'||qcA==='vague';
+    const hideClass = (hasQR && !isWeak) ? ' style="display:none" data-extra="1"' : '';
+    return`<div class="scard" data-id="${s.id}" data-status="${st}" onclick="toggleDetail('${s.id}')"${hideClass}>
       <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
-        <span style="font-size:11px;color:var(--text-dim);font-weight:500;">${chap}</span>
+        <span style="font-size:11px;color:var(--text-dim);font-weight:500;">${wm}${chap}</span>
         <span style="margin-left:auto;">${badgeHtml}</span>
       </div>
       <div class="sc-name">${s.name}</div>
@@ -1685,7 +1820,8 @@ function renderGrid(){
         <span class="sbadge ${SC[st]}">${SL[st]}</span>
       </div>
     </div>`;
-  }).join('');
+  }).join('')
+  + (hasQR ? `<div id="show-more-btn" style="text-align:center;padding:12px;"><button onclick="document.querySelectorAll('[data-extra]').forEach(e=>e.style.display='');document.getElementById('show-more-btn').style.display='none';" style="font-size:14px;color:var(--accent);background:none;border:1px solid var(--accent);border-radius:8px;padding:10px 24px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;">その他の章も見る ▼</button></div>` : '');
 }
 
 function renderSidebar(){
@@ -1782,14 +1918,13 @@ function renderDetail(){
   </div>`:'';
 
   const ratingHtml=['none','weak','ok','good'].map((v,i)=>{
-    const labels=['✗ 未着手','△ 理解不足','○ 理解できた','◎ 確認済み'];
+    const labels=['✗ 未着手','△ 学習中','○ 理解できた','◎ 確認済み'];
     return`<button class="rbt ${st===v?'active':''}" data-val="${v}" onclick="setStatus('${s.id}','${v}')">${labels[i]}</button>`;
   }).join('');
 
   panel.innerHTML=`
   <div class="dp-hdr">
     <div class="dp-meta">
-      <div class="dp-num">${s.num}</div>
       <div class="dp-name">${s.name}</div>
       <div class="dp-ess">${s.essence.replace(/\n/g,'<br>')}</div>
     </div>
@@ -1799,6 +1934,7 @@ function renderDetail(){
   <div>${skillsHtml}${checkHtml}${kwHtml}${qHtml}${practiceHtml}${pastExamHtml}</div>
   <div class="dp-foot">
     <span class="rat-lbl">自己評価：</span>
+    <div style="font-size:10px;color:var(--text-dim);margin-bottom:4px;">○理解できた＝テキストを読んで理解　◎確認済み＝問題で正解できた</div>
     <div class="rat-btns">${ratingHtml}</div>
     <div class="pages-box">${s.pages}</div>
   </div>`;
@@ -1814,7 +1950,18 @@ function toggleCheck(id,idx){
   const s=getCurrentSubjects().find(x=>x.id===id);
   if(!checks[id])checks[id]=Array(s.checklist.length).fill(false);
   checks[id][idx]=!checks[id][idx];
-  svc(checks);renderDetail();renderGrid();renderSidebar();
+  svc(checks);
+  // v2: チェック状況で自己評価を自動更新
+  const checked=checks[id].filter(Boolean).length;
+  const total=checks[id].length;
+  if(checked===0 && (status[id]==='weak'||!status[id])){
+    status[id]='none';svs(status);
+  } else if(checked>0 && checked<total && status[id]!=='ok' && status[id]!=='good'){
+    status[id]='weak';svs(status);
+  } else if(checked===total){
+    status[id]='good';svs(status);
+  }
+  renderDetail();renderGrid();renderSidebar();
 }
 function toggleAnswer(btn){
   const ans=btn.nextElementSibling;
@@ -1939,12 +2086,44 @@ function switchGuideTab(tab){
   document.getElementById('gm-tab3').classList.toggle('active',tab===3);
   document.getElementById('gm-tab2').classList.toggle('active',tab===2);
   document.getElementById('gm-note-2').style.display = tab===2?'block':'none';
-  renderGuideMap();
+  renderGM_v2();
 }
 
 
 // ===== ガイドマップ並び順（価値順）描画用ヘルパー =====
 // 3級：キーワードで節を検索して節データを返す
+
+function renderGM_v2(){
+  var wrap=document.getElementById('gm-chapters');
+  var lvKey=selectedGrade===2?'g2':'g3';
+  var order=(GM_ORDER[selectedPersona]||{})[lvKey];
+  if(!order){wrap.innerHTML='';return;}
+  var gmKey=selectedGrade===2?GM_KEY2:GM_KEY3;
+  var findFn=selectedGrade===2?function(k){return gmFindSec2(selectedPersona,k);}:function(k){return gmFindSec3(k);};
+  var bL={pri:'◎ 業務直結',strat:'○ 戦略',teach:'△ 指導系',exam:'▽ 受検用'};
+  var bC={pri:'#059669',strat:'#2563EB',teach:'#6B7280',exam:'#DC2626'};
+  var groups={},chOrd={};
+  order.forEach(function(item){var key=item[0],badge=item[1];
+    var found=findFn(key);if(!found)return;
+    var ck=found.chNum||'';
+    if(!groups[badge]){groups[badge]={};chOrd[badge]=[];}
+    if(!groups[badge][ck]){groups[badge][ck]={chNum:ck,chTitle:found.chTitle||'',secs:[]};chOrd[badge].push(ck);}
+    groups[badge][ck].secs.push(gmKey[key]||key);
+  });
+  var pfx=selectedGrade===2?'Int.':'Basic';
+  var out='';
+  ['pri','strat','teach','exam'].forEach(function(badge){
+    if(!groups[badge])return;
+    var chs=chOrd[badge].map(function(ck){return groups[badge][ck];});
+    out+='<div class="gm2-group"><div class="gm2-group-hdr" onclick="this.parentElement.classList.toggle(\'open\')"><span style="color:'+bC[badge]+'">'+bL[badge]+' <span style="font-size:11px;font-weight:400;color:var(--text-dim)">（'+chs.length+'章）</span></span><span class="gm2-arrow">▶</span></div><div class="gm2-group-body">';
+    chs.forEach(function(ch){
+      out+='<div class="gm2-ch"><div style="font-weight:500;">'+pfx+' '+ch.chNum+'　'+ch.chTitle+'</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px;">'+ch.secs.join(' / ')+'</div></div>';
+    });
+    out+='</div></div>';
+  });
+  wrap.innerHTML=out;
+}
+
 function gmFindSec3(key){
   const kw = GM_KEY3[key];
   if(!kw) return null;
@@ -2316,6 +2495,7 @@ let quickIndex = 0;
 let quickAnswers = {};
 
 function startQuickCheck(){
+  setFlowState('B');
   quickIndex = 0;
   quickAnswers = {};
   document.getElementById('qc-intro-card').style.display = 'none';
@@ -2340,7 +2520,7 @@ function renderQuickQ(){
   const total = qs.length;
   const item = qs[quickIndex];
   document.getElementById('qc-prog').textContent = (quickIndex+1)+' / '+total;
-  document.getElementById('qc-num').textContent = item.num;
+  // v2: removed
   document.getElementById('qc-q').textContent = item.q;
   const prev = quickAnswers[item.sid];
   ['yes','vague','no'].forEach(v=>{
@@ -2375,7 +2555,7 @@ function nextQuick(){
 
 function finishQuickCheck(){
   document.getElementById('qc-quiz-area').style.display='none';
-  document.getElementById('qc-result-area').style.display='';
+  setFlowState('C');
   renderQuickResult();
 }
 
@@ -2389,8 +2569,9 @@ function renderQuickResult(){
 
   grid.innerHTML = qs.map(item=>{
     const ans = quickAnswers[item.sid]||'no';
+    const name = item.num.replace(/^[①②③④⑤⑥⑦⑧⑨⑩]+[-\d]*\s*/,'');
     return '<div class="qr-cell '+classMap[ans]+'">'+
-      '<div class="qr-label">'+item.num+'</div>'+
+      '<div class="qr-label">'+name+'</div>'+
       '<div class="qr-val '+valMap[ans]+'">'+labelMap[ans]+'</div></div>';
   }).join('');
 
@@ -2405,7 +2586,7 @@ function renderQuickResult(){
       '詳細チェック（全問）で確認してから受検申込へ進むことをおすすめします。</div>';
   } else {
     const items = [...weak,...vague].slice(0,3);
-    const list = items.map(item=>'<strong>'+item.num+'</strong>').join('・');
+    const list = items.map(item=>'<strong>'+item.num.replace(/^[①②③④⑤⑥⑦⑧⑨⑩]+[-\d]*\s*/,'')+'</strong>').join('・');
     msg.innerHTML = '<div style="font-size:13px;color:var(--text-sub);line-height:1.7;'+
       'padding:12px 14px;background:var(--surface);border-radius:9px;margin-bottom:10px;">'+
       '<strong style="color:var(--text)">'+list+'</strong>'+
@@ -2426,6 +2607,7 @@ function renderQuickResult(){
 }
 
 function goToFullCheck(){
+  setFlowState('D');
   document.getElementById('quick-check-area').style.display='none';
   document.getElementById('check-start-view').style.display='';
   document.getElementById('check-start-view').scrollIntoView({behavior:'smooth',block:'start'});
@@ -2542,4 +2724,7 @@ document.getElementById('persona-select-area').style.display = '';
 document.querySelector('.layout').style.display = 'none';
 </script>
 
+<footer style="text-align:center;padding:20px 16px;font-size:11px;color:var(--text-dim);line-height:1.6;border-top:1px solid var(--border);margin-top:24px;">
+  本コンテンツの著作権は一般社団法人日本フィットネス産業協会（FIA）に帰属します。<br>複写・転載・再配布を禁止します。
+</footer>
 </body></html>
