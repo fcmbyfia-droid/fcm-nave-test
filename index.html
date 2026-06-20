@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0089)file:///C:/Users/user/Downloads/FCM_Web%E5%AD%A6%E7%BF%92%E3%83%8A%E3%83%93_py_v2_38.html -->
+<!-- saved from url=(0089)file:///C:/Users/user/Downloads/FCM_Web%E5%AD%A6%E7%BF%92%E3%83%8A%E3%83%93_py_v2_41.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -691,7 +691,6 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
           </div>
           <div class="qc-nav">
             <button class="qc-nav-btn" id="qc-prev" onclick="prevQuick()" disabled="">← 前へ</button>
-            <button class="qc-nav-btn" id="qc-next" onclick="nextQuick()">次へ →</button>
           </div>
         </div>
       </div>
@@ -709,19 +708,23 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
                 <input type="text" id="reg-name" placeholder="お名前" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:&#39;Noto Sans JP&#39;,sans-serif;color:var(--text);background:var(--bg);">
                 <input type="text" id="reg-org" placeholder="所属（会社名・スタジオ名等）" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:&#39;Noto Sans JP&#39;,sans-serif;color:var(--text);background:var(--bg);">
                 <input type="email" id="reg-email" placeholder="メールアドレス" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:&#39;Noto Sans JP&#39;,sans-serif;color:var(--text);background:var(--bg);">
+                <input type="email" id="reg-email2" placeholder="メールアドレス（確認用）" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:&#39;Noto Sans JP&#39;,sans-serif;color:var(--text);background:var(--bg);">
               </div>
               <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;">※ご登録いただいた情報は、上記のお知らせ等にのみ使用します。</div>
               <button class="flow-btn-primary" onclick="submitRegistration()">登録して学習を始める →</button>
               <div style="text-align:center;margin-top:10px;">
                 <button onclick="skipRegistration()" style="font-size:13px;color:var(--text-dim);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:&#39;Noto Sans JP&#39;,sans-serif;">登録せずに学習を始める →</button>
               </div>
+              <div style="text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+                <button class="flow-btn-secondary" onclick="startQuickCheck()">もう一度チェック</button>
+              </div>
             </div>
             <!-- 登録済みの場合のボタン -->
             <div id="already-registered" style="display:none;">
               <button class="flow-btn-primary" onclick="showStudyFromResult()">苦手な章から学習を始める →</button>
-            </div>
-            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-              <button class="flow-btn-secondary" onclick="startQuickCheck()">もう一度チェック</button>
+              <div style="text-align:center;margin-top:12px;">
+                <button class="flow-btn-secondary" onclick="startQuickCheck()">もう一度チェック</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1546,6 +1549,8 @@ function submitRegistration(){
   if(!name){alert('お名前を入力してください。');return;}
   if(!org){alert('所属を入力してください。');return;}
   if(!email||email.indexOf('@')<1){alert('正しいメールアドレスを入力してください。');return;}
+  var email2=document.getElementById('reg-email2').value.trim();
+  if(email!==email2){alert('メールアドレスが一致しません。もう一度ご確認ください。');return;}
   // Googleフォームに送信（URLはFIAが設定）
   var formUrl='YOUR_GOOGLE_FORM_URL';
   var persona=selectedPersona||'py';
@@ -2568,8 +2573,6 @@ function renderQuickQ(){
     btn.className = 'qc-btn' + (prev===v ? ' sel-'+v : '');
   });
   document.getElementById('qc-prev').disabled = quickIndex===0;
-  document.getElementById('qc-next').textContent =
-    quickIndex===total-1 ? '結果を見る →' : '次へ →';
 }
 
 function answerQuick(val){
