@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0089)file:///C:/Users/user/Downloads/FCM_Web%E5%AD%A6%E7%BF%92%E3%83%8A%E3%83%93_py_v2_41.html -->
+<!-- saved from url=(0089)file:///C:/Users/user/Downloads/FCM_Web%E5%AD%A6%E7%BF%92%E3%83%8A%E3%83%93_py_v2_44.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -710,7 +710,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
                 <input type="email" id="reg-email" placeholder="メールアドレス" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:&#39;Noto Sans JP&#39;,sans-serif;color:var(--text);background:var(--bg);">
                 <input type="email" id="reg-email2" placeholder="メールアドレス（確認用）" style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:&#39;Noto Sans JP&#39;,sans-serif;color:var(--text);background:var(--bg);">
               </div>
-              <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;">※ご登録いただいた情報は、上記のお知らせ等にのみ使用します。</div>
+              <div style="font-size:10px;color:var(--text-dim);margin-bottom:12px;">※ご登録いただいた情報は、上記のお知らせ等にのみ使用します。<br>※登録完了のメールは送信されません。更新情報がある場合にメールをお届けします。</div>
               <button class="flow-btn-primary" onclick="submitRegistration()">登録して学習を始める →</button>
               <div style="text-align:center;margin-top:10px;">
                 <button onclick="skipRegistration()" style="font-size:13px;color:var(--text-dim);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:&#39;Noto Sans JP&#39;,sans-serif;">登録せずに学習を始める →</button>
@@ -1552,15 +1552,15 @@ function submitRegistration(){
   var email2=document.getElementById('reg-email2').value.trim();
   if(email!==email2){alert('メールアドレスが一致しません。もう一度ご確認ください。');return;}
   // Googleフォームに送信（URLはFIAが設定）
-  var formUrl='YOUR_GOOGLE_FORM_URL';
+  var formUrl='https://docs.google.com/forms/d/e/1FAIpQLSeeuTYHyZSUWxlLTEGv65FBz9VSHluilo9NlidgMTgDaiA6JQ/formResponse';
   var persona=selectedPersona||'py';
   var grade=selectedGrade===2?'Intermediate 2級':'Basic 3級';
   var data=new URLSearchParams();
-  data.append('entry.NAME_ID',name);
-  data.append('entry.ORG_ID',org);
-  data.append('entry.EMAIL_ID',email);
-  data.append('entry.PERSONA_ID',persona);
-  data.append('entry.GRADE_ID',grade);
+  data.append('entry.278115486',name);
+  data.append('entry.1725521625',org);
+  data.append('entry.1778140340',email);
+  data.append('entry.763997121',persona);
+  data.append('entry.868883860',grade);
   if(formUrl!=='YOUR_GOOGLE_FORM_URL'){
     fetch(formUrl,{method:'POST',mode:'no-cors',body:data}).catch(function(){});
   }
